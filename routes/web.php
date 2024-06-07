@@ -30,3 +30,5 @@ Route::post('/tambah-pasien', [PasienController::class, 'store'])->name('pasien.
 
 // button hapus
 Route::get('/hapus-pasien/{id}', [PasienController::class, "destroy"])->name('pasien.destroy');
+
+Route::get('/pasien/cetak', [PasienController::class, 'cetak']);

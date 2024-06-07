@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <title>Data Pasien</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Pasien</title>
+  <style>
+    .table-data {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .table-data tr th,
+    .table-data tr td {
+      border: 1px solid black;
+      font-size: 10pt;
+      padding: 5px 5px;
+      text-align: center;
+    }
+
+    .table-data tr th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    .table-data tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .table-data tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
 </head>
+
 <body>
-    @include('sidebar')
-
-    <section id="content">
-        <!-- Report Button -->
-        <div id="addreport-button-container">
-            <a href="/pasien/cetak">CETAK DATA</a>
-            <a href="/add-pasien">TAMBAH</a>
-        </div>
-
-        <h1>DATA PASIEN</h1>
-
-        <table class="data-table">
-            <thead>
+  <h3>Data Pasien</h3>
+  <table class="table-data">
+  <thead>
                 <tr>
                     <th>NO</th>
                     <th>ID PASIEN</th>
@@ -29,8 +48,6 @@
                     <th>TELP</th>
                     <th>ALAMAT</th>
                     <th>RIWAYAT PENYAKIT</th>
-                    <th>EDIT</th>
-                    <th>HAPUS</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,8 +61,6 @@
                     <td>{{ $row->nomor_telepon }}</td>
                     <td>{{ $row->alamat }}</td>
                     <td>{{ $row->riwayat_penyakit }}</td>
-                    <td><a class="edit" href="/edit-pasien/{{ $row->pasien_id }}">EDIT</a></td>
-                    <td><a class="hapus" href="/hapus-pasien/{{ $row->pasien_id }}">HAPUS</a></td>
                 </tr>
                 @empty
                 <tr>
@@ -53,7 +68,6 @@
                 </tr>
                 @endforelse
             </tbody>
-        </table>
-    </section>
 </body>
+
 </html>

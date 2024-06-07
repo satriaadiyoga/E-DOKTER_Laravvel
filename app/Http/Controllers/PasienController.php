@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PasienController extends Controller
 {
@@ -113,4 +114,13 @@ class PasienController extends Controller
     
         return redirect('/data-pasien')->with('success', 'Data pasien berhasil dihapus.');
     }
+
+    public function cetak()
+    {
+        $pasien = Pasien::all();
+        $pdf = Pdf::loadview('pasien-cetak', compact('pasien'));
+        return $pdf->download('laporan-data-pasien.pdf');
+    }
+
+
 }
